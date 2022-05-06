@@ -17,11 +17,15 @@ USE movies_db;
 
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS directors;
+DROP TABLE IF EXISTS genre;
+DROP TABLE IF EXISTS actors;
 
 
 # 6. map the json movie properties to movies table columns
 # --> start with just a movies table with all the columns found in the movie json properties
 
+
+# directors table
 CREATE TABLE IF NOT EXISTS directors
 (
 
@@ -31,19 +35,41 @@ CREATE TABLE IF NOT EXISTS directors
 );
 DESCRIBE directors;
 
+# genre
+CREATE TABLE IF NOT EXISTS genre
+(
+    id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    genre_name VARCHAR(120),
+    PRIMARY KEY (id)
+);
+DESCRIBE genre;
+
+
+# actors
+CREATE TABLE IF NOT EXISTS actors
+(
+    id   INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(120),
+    PRIMARY KEY (id)
+);
+DESCRIBE actors;
+
+# movies tables
 CREATE TABLE IF NOT EXISTS movies
 (
-    id          int unsigned not null auto_increment,
-    title       varchar(120),
-    year        char(4),
-    plot        text,
-    poster      text,
-    rating      char(1),
-    director_id int unsigned not null,
-#     genre_id int unsigned not null,
-    primary key (id),
-    foreign key (director_id) references directors (id)
-#     foreign key (genre_id) references genre (id)
+    id          INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    title       VARCHAR(120),
+    year        CHAR(4),
+    plot        TEXT,
+    poster      TEXT,
+    rating      CHAR(1),
+    director_id INT UNSIGNED NOT NULL,
+    genre_id    INT UNSIGNED NOT NULL,
+    actors_id   INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (director_id) REFERENCES directors (id),
+    FOREIGN KEY (genre_id) REFERENCES genre (id),
+    FOREIGN KEY (actors_id) REFERENCES actors (id)
 );
 
 DESCRIBE movies;
