@@ -1,0 +1,70 @@
+{
+  "movies": [
+    {
+      "title": "down",
+      "rating": "7",
+      "year": "",
+      "genre": "Drama, History, War",
+      "director": "",
+      "plot": "160 elite U.S. soldiers drop into Somalia to capture two top lieutenants of a renegade warlord and find themselves in a desperate battle with a large force of heavily-armed Somalis.",
+      "actors": "",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYWMwMzQxZjQtODM1YS00YmFiLTk1YjQtNzNiYWY1MDE4NTdiXkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SX300.jpg",
+      "id": 1
+    },
+    {
+      "title": "tenet",
+      "rating": "6",
+      "year": "",
+      "genre": "Action, Sci-Fi",
+      "director": "",
+      "plot": "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
+      "actors": "",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYzg0NGM2NjAtNmIxOC00MDJmLTg5ZmYtYzM0MTE4NWE2NzlhXkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_SX300.jpg",
+      "id": 2
+    },
+    {
+      "title": "resident evil",
+      "rating": "5",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZmI1ZGRhNDYtOGVjZC00MmUyLThlNTktMTQyZGE3MzE1ZTdlXkEyXkFqcGdeQXVyNDE5MTU2MDE@._V1_SX300.jpg",
+      "year": "2002",
+      "genre": "Action, Horror, Sci-Fi",
+      "director": "Paul W.S. Anderson",
+      "plot": "A special military unit fights a powerful, out-of-control supercomputer and hundreds of scientists who have mutated into flesh-eating creatures after a laboratory accident.",
+      "actors": "Ryan McCluskey, Oscar Pearce, Indra Ové, Anna Bolt",
+      "id": 3
+    },
+    {
+      "title": "Breaking 2",
+      "rating": "6",
+      "year": "",
+      "genre": "",
+      "director": "",
+      "plot": "",
+      "actors": "",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNGMwNGI0NzAtY2U1Zi00MTI3LTk2NWQtMTU0ZmQ3OGZmMjc2XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UY1200_CR86,0,630,1200_AL_.jpg",
+      "id": 4
+    },
+    {
+      "title": "happy feet",
+      "rating": "8",
+      "year": "",
+      "genre": "action",
+      "director": "",
+      "plot": "new plot",
+      "actors": "",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/5/5c/Happy_Feet_Poster.jpg",
+      "id": 5
+    },
+    {
+      "title": "pokemon 3",
+      "rating": "8",
+      "year": "2022",
+      "genre": "action",
+      "director": "",
+      "plot": "pokemons",
+      "actors": "",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/4/47/Pokemon-3-japanese-poster.jpg",
+      "id": 6
+    }
+  ]
+}
