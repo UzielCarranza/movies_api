@@ -8,38 +8,31 @@ import java.util.List;
 
 
 @CrossOrigin
+@RequestMapping("/api/movies/")
 @RestController
 public class MoviesController {
+    private List<Movie> Movies;
 
-    @RequestMapping("/api/movie/{id}")
-    @GetMapping("id")
+    @GetMapping()
     public Movie one() {
-        return new Movie(1, "test", "1995", "someone", "The dude", "idk", "comedy", "some plot", "assaas");
+        return getAll().get(1);
     }
 
+    @GetMapping("{id}")
+    public Movie getById(@PathVariable int id) {
+        return Movies.stream().filter((movie) -> {
+                    return movie.getId() == id;
+                }).findFirst()
+                .orElse(null);
+    }
 
-    @RequestMapping("/api/movies")
-    @GetMapping()
+    @GetMapping("all")
     public List<Movie> getAll() {
-        List<Movie> Movies = new ArrayList<>();
+        Movies = new ArrayList<>();
         Movie movie1 = new Movie(1, "test", "1995", "someone", "The dude", "idk", "comedy", "some plot", "assaas");
         Movie movie2 = new Movie(2, "test", "1995", "someone", "The dude", "idk", "comedy", "some plot", "assaas");
         Movies.add(movie1);
         Movies.add(movie2);
         return Movies;
     }
-
-//    @RequestMapping("/api/movies/{id}")
-//    @GetMapping()
-//    public Movie getById(@PathVariable Long id) {
-//        Movie movie;
-//        List<Movie> movieList = getAll();
-//        for (Long i = id; i < movieList.size(); i++) {
-//            if (movieList.contains(getAll().get(Math.toIntExact(id)))) {
-//                movie = movieList.forEach(movieList.);
-//                return movie;
-//            }
-//        }
-//        return movie;
-//    }
 }
