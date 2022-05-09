@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api/movies/")
 @RestController
 public class MoviesController {
-    private List<Movie> Movies;
+    private final List<Movie> movies = setAllMovies();
 
     @GetMapping()
     public Movie one() {
@@ -20,7 +20,7 @@ public class MoviesController {
 
     @GetMapping("{id}")
     public Movie getById(@PathVariable Long id) {
-        return Movies.stream().filter((movie) -> {
+        return movies.stream().filter((movie) -> {
                     return movie.getId() == id;
                 }).findFirst()
                 .orElse(null);
@@ -28,11 +28,24 @@ public class MoviesController {
 
     @GetMapping("all")
     public List<Movie> getAll() {
-        Movies = new ArrayList<>();
+        return this.movies;
+    }
+
+
+    @PostMapping
+    public void createAll(@RequestBody Movie newMovies) {
+        System.out.println(newMovies);
+
+
+    }
+
+
+    public List<Movie> setAllMovies() {
+        List<Movie> movies = new ArrayList<>();
         Movie movie1 = new Movie(1, "test", "1995", "someone", "The dude", "idk", "comedy", "some plot", "assaas");
         Movie movie2 = new Movie(2, "test", "1995", "someone", "The dude", "idk", "comedy", "some plot", "assaas");
-        Movies.add(movie1);
-        Movies.add(movie2);
-        return Movies;
+        movies.add(movie1);
+        movies.add(movie2);
+        return movies;
     }
 }
