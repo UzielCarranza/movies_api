@@ -28,6 +28,7 @@ public class MoviesController {
 
     @GetMapping("all")
     public List<Movie> getAll() {
+
         return this.movies;
     }
 
@@ -42,17 +43,14 @@ public class MoviesController {
 
     @PostMapping("all")
     public void createAll(@RequestBody List<Movie> moviesAll) {
-        System.out.println(movies);
         movies.addAll(moviesAll);
-
-
     }
 
 
     public List<Movie> setAllMovies() {
         List<Movie> movies = new ArrayList<>();
-        Movie movie1 = new Movie(1, "test", "1995", "someone", "comedy", "some plot", "assaas");
-        Movie movie2 = new Movie(2, "test", "1995", "someone", "comedy", "some plot", "assaas");
+        Movie movie1 = new Movie(1, "test", "1995", "someone", "actors", "some genre", "some plot", "5", "");
+        Movie movie2 = new Movie(2, "test", "1995", "someone", "actors", "some genre", "some plot", "5", "");
         movies.add(movie1);
         movies.add(movie2);
         return movies;

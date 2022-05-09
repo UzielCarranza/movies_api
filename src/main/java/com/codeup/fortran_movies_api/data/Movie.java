@@ -6,12 +6,13 @@ public class Movie {
     private String year;
     private String director;
     private String actors;
-    private String imdbId;
-    private String movieser;
     private String genre;
     private String plot;
+    private String rating;
+    private String poster;
 
-    public Movie(int id, String title, String year, String director, String actors, String genre, String plot) {
+
+    public Movie(int id, String title, String year, String director, String actors, String genre, String plot, String rating, String poster) {
         this.id = id;
         this.title = title;
         this.year = year;
@@ -19,6 +20,8 @@ public class Movie {
         this.actors = actors;
         this.genre = genre;
         this.plot = plot;
+        this.rating = rating;
+        this.poster = poster;
     }
 
     public Movie() {
@@ -64,6 +67,7 @@ public class Movie {
     public void setActors(String actors) {
         this.actors = actors;
     }
+
     public String getGenre() {
         return genre;
     }
@@ -80,6 +84,21 @@ public class Movie {
         this.plot = plot;
     }
 
+    public String  getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
 
     @Override
     public String toString() {
@@ -89,10 +108,10 @@ public class Movie {
                 ", year='" + year + '\'' +
                 ", director='" + director + '\'' +
                 ", actors='" + actors + '\'' +
-                ", imdbId='" + imdbId + '\'' +
-                ", movieser='" + movieser + '\'' +
                 ", genre='" + genre + '\'' +
                 ", plot='" + plot + '\'' +
+                ", rating='" + rating + '\'' +
+                ", poster='" + poster + '\'' +
                 '}';
     }
 }
