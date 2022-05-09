@@ -19,7 +19,7 @@ public class MoviesController {
     }
 
     @GetMapping("{id}")
-    public Movie getById(@PathVariable int id) {
+    public Movie getById(@PathVariable Long id) {
         return Movies.stream().filter((movie) -> {
                     return movie.getId() == id;
                 }).findFirst()
