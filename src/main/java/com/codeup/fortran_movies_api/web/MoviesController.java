@@ -33,8 +33,17 @@ public class MoviesController {
 
 
     @PostMapping
-    public void createAll(@RequestBody Movie newMovies) {
-        System.out.println(newMovies);
+    public void createOne(@RequestBody Movie newMovie) {
+        System.out.println(newMovie);
+        movies.add(newMovie);
+
+
+    }
+
+    @PostMapping("all")
+    public void createAll(@RequestBody List<Movie> moviesAll) {
+        System.out.println(movies);
+        movies.addAll(moviesAll);
 
 
     }
@@ -42,8 +51,8 @@ public class MoviesController {
 
     public List<Movie> setAllMovies() {
         List<Movie> movies = new ArrayList<>();
-        Movie movie1 = new Movie(1, "test", "1995", "someone", "The dude", "idk", "comedy", "some plot", "assaas");
-        Movie movie2 = new Movie(2, "test", "1995", "someone", "The dude", "idk", "comedy", "some plot", "assaas");
+        Movie movie1 = new Movie(1, "test", "1995", "someone", "comedy", "some plot", "assaas");
+        Movie movie2 = new Movie(2, "test", "1995", "someone", "comedy", "some plot", "assaas");
         movies.add(movie1);
         movies.add(movie2);
         return movies;
