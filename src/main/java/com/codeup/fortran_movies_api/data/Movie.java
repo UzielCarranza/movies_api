@@ -109,21 +109,6 @@ public class Movie {
         this.poster = poster;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Movie{" +
-//                "id=" + id +
-//                ", title='" + title + '\'' +
-//                ", year='" + year + '\'' +
-//                ", director='" + directors + '\'' +
-//                ", actors='" + actors + '\'' +
-//                ", genre='" + genre + '\'' +
-//                ", plot='" + plot + '\'' +
-//                ", rating='" + rating + '\'' +
-//                ", poster='" + poster + '\'' +
-//                '}';
-//    }
-
     @Override
     public String toString() {
         return "Movie{" +

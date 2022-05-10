@@ -2,7 +2,6 @@ package com.codeup.fortran_movies_api.web;
 
 import com.codeup.fortran_movies_api.data.Movie;
 import com.codeup.fortran_movies_api.data.MoviesRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/movies/")
 public class MoviesController {
-    private final List<Movie> movies = setAllMovies();
+//    private final List<Movie> movies = setAllMovies();
 
 
     private final MoviesRepository moviesRepository;
@@ -22,28 +21,22 @@ public class MoviesController {
         this.moviesRepository = moviesRepository;
     }
 
-
-    @GetMapping()
-    public Movie one() {
-        return getAll().get(1);
-    }
-
     @GetMapping("{id}")
-    public Movie getById(@PathVariable Long id) {
-        return movies.stream().filter((movie) -> {
-                    return movie.getId() == id;
-                }).findFirst()
-                .orElse(null);
+    public Movie getById(@PathVariable int id) {
+//        return movies.stream().filter((movie) -> {
+//                    return movie.getId() == id;
+//                }).findFirst()
+//                .orElse(null);
+        return moviesRepository.findById(id).orElse(null);
     }
 
     @GetMapping("all")
     public List<Movie> getAll() {
-
-        return this.movies;
+        return moviesRepository.findAll();
     }
 
-//    @GetMapping("search")
-//    public Movie getByTitle(@RequestParam String title) {
+    @GetMapping("search")
+    public List<Movie> getByTitle(@RequestParam("title") String title) {
 //        Movie movieToReturn = null;
 //        for (Movie movie : movies) {
 //            if (movie.getTitle().equals(movie)) {
@@ -51,8 +44,9 @@ public class MoviesController {
 //            }
 //        }
 //        return movieToReturn;
-//    }
-//
+
+        return moviesRepository.findByTitle(title);
+    }
 
 
     @PostMapping
@@ -70,9 +64,9 @@ public class MoviesController {
         moviesRepository.saveAll(moviesAll);
     }
 
-
-    public List<Movie> setAllMovies() {
-        List<Movie> movies = new ArrayList<>();
-        return movies;
-    }
+//
+//    public List<Movie> setAllMovies() {
+//        List<Movie> movies = new ArrayList<>();
+//        return movies;
+//    }
 }
