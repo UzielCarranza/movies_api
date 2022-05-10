@@ -59,8 +59,6 @@ public class MoviesController {
 
     @PostMapping("all")
     public void createAll(@RequestBody List<Movie> moviesAll) {
-        System.out.println(moviesAll.getClass());
-        System.out.println(moviesAll);
         moviesRepository.saveAll(moviesAll);
     }
 
