@@ -1,10 +1,18 @@
 package com.codeup.fortran_movies_api.data;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="movies")
 public class Movie {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     private String year;
-    private String director;
+    private String directors;
     private String actors;
     private String genre;
     private String plot;
@@ -12,16 +20,17 @@ public class Movie {
     private String poster;
 
 
-    public Movie(int id, String title, String year, String director, String actors, String genre, String plot, String rating, String poster) {
+    public Movie(int id, String title, String year, String plot, String poster,String rating, String directors, String actors, String genre) {
         this.id = id;
         this.title = title;
         this.year = year;
-        this.director = director;
+        this.plot = plot;
+        this.poster = poster;
+
+        this.rating = rating;
+        this.directors = directors;
         this.actors = actors;
         this.genre = genre;
-        this.plot = plot;
-        this.rating = rating;
-        this.poster = poster;
     }
 
     public Movie() {
@@ -53,11 +62,11 @@ public class Movie {
     }
 
     public String getDirector() {
-        return director;
+        return directors;
     }
 
     public void setDirector(String director) {
-        this.director = director;
+        this.directors = director;
     }
 
     public String getActors() {
@@ -100,18 +109,18 @@ public class Movie {
         this.poster = poster;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", year='" + year + '\'' +
-                ", director='" + director + '\'' +
-                ", actors='" + actors + '\'' +
-                ", genre='" + genre + '\'' +
-                ", plot='" + plot + '\'' +
-                ", rating='" + rating + '\'' +
-                ", poster='" + poster + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Movie{" +
+//                "id=" + id +
+//                ", title='" + title + '\'' +
+//                ", year='" + year + '\'' +
+//                ", director='" + directors + '\'' +
+//                ", actors='" + actors + '\'' +
+//                ", genre='" + genre + '\'' +
+//                ", plot='" + plot + '\'' +
+//                ", rating='" + rating + '\'' +
+//                ", poster='" + poster + '\'' +
+//                '}';
+//    }
 }

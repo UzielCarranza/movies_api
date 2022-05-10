@@ -1,6 +1,8 @@
 package com.codeup.fortran_movies_api.web;
 
 import com.codeup.fortran_movies_api.data.Movie;
+import com.codeup.fortran_movies_api.data.MoviesRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -8,10 +10,18 @@ import java.util.List;
 
 
 @CrossOrigin
-@RequestMapping("/api/movies/")
 @RestController
+@RequestMapping("/api/movies/")
 public class MoviesController {
     private final List<Movie> movies = setAllMovies();
+
+
+    private final MoviesRepository moviesRepository;
+
+    public MoviesController(MoviesRepository moviesRepository) {
+        this.moviesRepository = moviesRepository;
+    }
+
 
     @GetMapping()
     public Movie one() {
@@ -32,37 +42,37 @@ public class MoviesController {
         return this.movies;
     }
 
-    @GetMapping("search")
-    public Movie getByTitle(@RequestParam String title) {
-        Movie movieToReturn = null;
-        for (Movie movie : movies) {
-            if (movie.getTitle().equals(movie)) {
-                movieToReturn = movie;
-            }
-        }
-        return movieToReturn;
-    }
+//    @GetMapping("search")
+//    public Movie getByTitle(@RequestParam String title) {
+//        Movie movieToReturn = null;
+//        for (Movie movie : movies) {
+//            if (movie.getTitle().equals(movie)) {
+//                movieToReturn = movie;
+//            }
+//        }
+//        return movieToReturn;
+//    }
+//
+
 
     @PostMapping
     public void createOne(@RequestBody Movie newMovie) {
-        System.out.println(newMovie);
-        movies.add(newMovie);
-
-
+//        System.out.println(newMovie);
+//        movies.add(newMovie);
+        moviesRepository.save(newMovie);
     }
+
 
     @PostMapping("all")
     public void createAll(@RequestBody List<Movie> moviesAll) {
-        movies.addAll(moviesAll);
+        System.out.println(moviesAll.getClass());
+        System.out.println(moviesAll);
+        moviesRepository.saveAll(moviesAll);
     }
 
 
     public List<Movie> setAllMovies() {
         List<Movie> movies = new ArrayList<>();
-        Movie movie1 = new Movie(1, "test", "1995", "someone", "actors", "some genre", "some plot", "5", "");
-        Movie movie2 = new Movie(2, "test", "1995", "someone", "actors", "some genre", "some plot", "5", "");
-        movies.add(movie1);
-        movies.add(movie2);
         return movies;
     }
 }
