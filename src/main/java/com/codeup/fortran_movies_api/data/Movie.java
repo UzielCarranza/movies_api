@@ -123,4 +123,19 @@ public class Movie {
 //                ", poster='" + poster + '\'' +
 //                '}';
 //    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                ", directors='" + directors + '\'' +
+                ", actors='" + actors + '\'' +
+                ", genre='" + genre + '\'' +
+                ", plot='" + plot + '\'' +
+                ", rating='" + rating + '\'' +
+                ", poster='" + poster + '\'' +
+                '}';
+    }
 }
