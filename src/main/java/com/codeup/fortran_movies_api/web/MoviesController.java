@@ -32,6 +32,16 @@ public class MoviesController {
         return this.movies;
     }
 
+    @GetMapping("search")
+    public Movie getByTitle(@RequestParam String title) {
+        Movie movieToReturn = null;
+        for (Movie movie : movies) {
+            if (movie.getTitle().equals(movie)) {
+                movieToReturn = movie;
+            }
+        }
+        return movieToReturn;
+    }
 
     @PostMapping
     public void createOne(@RequestBody Movie newMovie) {
