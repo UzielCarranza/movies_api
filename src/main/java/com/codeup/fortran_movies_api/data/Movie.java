@@ -2,9 +2,10 @@ package com.codeup.fortran_movies_api.data;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name="movies")
+@Table(name = "movies")
 public class Movie {
 
     @Id
@@ -12,25 +13,32 @@ public class Movie {
     private int id;
     private String title;
     private String year;
-    private String directors;
-    private String actors;
-    private String genre;
+
+    @ManyToOne
+    private Director director;
+//    private String actors;
+//    private String genre;
     private String plot;
     private String rating;
     private String poster;
 
-
-    public Movie(int id, String title, String year, String plot, String poster,String rating, String directors, String actors, String genre) {
+    public Movie(int id, String title, String year, String plot, String poster, String rating /*String directors,*/ /*String actors, String genre*/) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.plot = plot;
         this.poster = poster;
-
         this.rating = rating;
-        this.directors = directors;
-        this.actors = actors;
-        this.genre = genre;
+//        this.actors = actors;
+//        this.genre = genre;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
     }
 
     public Movie() {
@@ -61,29 +69,21 @@ public class Movie {
         this.year = year;
     }
 
-    public String getDirector() {
-        return directors;
-    }
+//    public String getActors() {
+//        return actors;
+//    }
+//
+//    public void setActors(String actors) {
+//        this.actors = actors;
+//    }
 
-    public void setDirector(String director) {
-        this.directors = director;
-    }
-
-    public String getActors() {
-        return actors;
-    }
-
-    public void setActors(String actors) {
-        this.actors = actors;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+//    public String getGenre() {
+//        return genre;
+//    }
+//
+//    public void setGenre(String genre) {
+//        this.genre = genre;
+//    }
 
     public String getPlot() {
         return plot;
@@ -93,7 +93,7 @@ public class Movie {
         this.plot = plot;
     }
 
-    public String  getRating() {
+    public String getRating() {
         return rating;
     }
 
@@ -113,14 +113,12 @@ public class Movie {
     public String toString() {
         return "Movie{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", year='" + year + '\'' +
-                ", directors='" + directors + '\'' +
-                ", actors='" + actors + '\'' +
-                ", genre='" + genre + '\'' +
+                ", director=" + director.getName() +
                 ", plot='" + plot + '\'' +
                 ", rating='" + rating + '\'' +
                 ", poster='" + poster + '\'' +
+                ", title='" + title + '\'' +
+                ", year='" + year + '\'' +
                 '}';
     }
 }

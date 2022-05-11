@@ -1,5 +1,7 @@
 package com.codeup.fortran_movies_api.web;
 
+import com.codeup.fortran_movies_api.data.Director;
+import com.codeup.fortran_movies_api.data.DirectorsRepository;
 import com.codeup.fortran_movies_api.data.Movie;
 import com.codeup.fortran_movies_api.data.MoviesRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -17,13 +19,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/movies/")
 public class MoviesController {
-//    private final List<Movie> movies = setAllMovies();
-
 
     private final MoviesRepository moviesRepository;
+    private final DirectorsRepository directorsRepository;
 
-    public MoviesController(MoviesRepository moviesRepository) {
+    public MoviesController(MoviesRepository moviesRepository, DirectorsRepository directorsRepository) {
         this.moviesRepository = moviesRepository;
+        this.directorsRepository = directorsRepository;
     }
 
     @GetMapping("{id}")
@@ -42,13 +44,6 @@ public class MoviesController {
 
     @GetMapping("search")
     public List<Movie> getByTitle(@RequestParam("title") String title) {
-//        Movie movieToReturn = null;
-//        for (Movie movie : movies) {
-//            if (movie.getTitle().equals(movie)) {
-//                movieToReturn = movie;
-//            }
-//        }
-//        return movieToReturn;
 
         return moviesRepository.findByTitle(title);
     }
@@ -61,8 +56,7 @@ public class MoviesController {
 
     @PostMapping
     public void createOne(@RequestBody Movie newMovie) {
-//        System.out.println(newMovie);
-//        movies.add(newMovie);
+
         moviesRepository.save(newMovie);
     }
 
@@ -71,13 +65,6 @@ public class MoviesController {
     public void createAll(@RequestBody List<Movie> moviesAll) {
         moviesRepository.saveAll(moviesAll);
     }
-
-//
-//    public List<Movie> setAllMovies() {
-//        List<Movie> movies = new ArrayList<>();
-//        return movies;
-//    }
-
 
     @DeleteMapping("{id}")
     public void deleteById(@PathVariable int id, HttpServletResponse response) throws Exception {
@@ -88,5 +75,20 @@ public class MoviesController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No movie with ID: " + id + " exists within the database");
 
         }
+//        try {
+//
+//            moviesRepository.deleteById(id);
+//            } else {
+//                throw new SecondException();
+//            }
+//        } catch (Exception e) {
+//            throw e;
+//        }
+    }
+
+    @GetMapping("search/director")
+    public List<Director> getByDirector(@RequestParam("name") String directorName) {
+        return directorsRepository.findByName(directorName);
+
     }
 }
