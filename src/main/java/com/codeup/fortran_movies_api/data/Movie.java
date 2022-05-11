@@ -28,7 +28,6 @@ public class Movie {
     private List<Genre> genres;
 
 
-
     public Movie(int id, String title, String year, String plot, String poster, String rating /*String directors,*/ /*String actors, String genre*/) {
         this.id = id;
         this.title = title;
@@ -102,10 +101,11 @@ public class Movie {
     public List<Genre> getGenres() {
         return genres;
     }
-//
-//    public void setGenres(List<Genre> genres) {
-//        this.genres = genres;
-//    }
+
+    //
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
 
     @Override
     public String toString() {
