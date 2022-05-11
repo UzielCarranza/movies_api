@@ -6,8 +6,9 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "directors")
+@Table(name="directors")
 public class Director {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -16,7 +17,7 @@ public class Director {
 
     @OneToMany(mappedBy = "director")
     @JsonIgnoreProperties("director")
-    private List<Movie> directorMovies;
+    private List<Movie> directedMovies;
 
     public Director(int id, String name) {
         this.id = id;
@@ -42,12 +43,13 @@ public class Director {
         this.name = name;
     }
 
-    public List<Movie> getDirectorMovies() {
-        return directorMovies;
+
+    public List<Movie> getDirectedMovies() {
+        return directedMovies;
     }
 
-    public void setDirectorMovies(List<Movie> directorMovies) {
-        this.directorMovies = directorMovies;
+    public void setDirectedMovies(List<Movie> directedMovies) {
+        this.directedMovies = directedMovies;
     }
 
     @Override

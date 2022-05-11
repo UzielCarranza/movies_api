@@ -17,9 +17,8 @@ public class Movie {
     private String year;
 
     @ManyToOne
+    @JsonIgnoreProperties("directedMovies")
     private Director director;
-//    private String actors;
-//    private String genre;
     private String plot;
     private String rating;
     private String poster;
@@ -37,8 +36,6 @@ public class Movie {
         this.plot = plot;
         this.poster = poster;
         this.rating = rating;
-//        this.actors = actors;
-//        this.genre = genre;
     }
 
     public Director getDirector() {
@@ -77,22 +74,6 @@ public class Movie {
         this.year = year;
     }
 
-//    public String getActors() {
-//        return actors;
-//    }
-//
-//    public void setActors(String actors) {
-//        this.actors = actors;
-//    }
-
-//    public String getGenre() {
-//        return genre;
-//    }
-//
-//    public void setGenre(String genre) {
-//        this.genre = genre;
-//    }
-
     public String getPlot() {
         return plot;
     }
@@ -121,10 +102,10 @@ public class Movie {
     public List<Genre> getGenres() {
         return genres;
     }
-
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
-    }
+//
+//    public void setGenres(List<Genre> genres) {
+//        this.genres = genres;
+//    }
 
     @Override
     public String toString() {

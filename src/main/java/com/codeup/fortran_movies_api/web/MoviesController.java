@@ -1,17 +1,12 @@
 package com.codeup.fortran_movies_api.web;
 
-import com.codeup.fortran_movies_api.data.Director;
-import com.codeup.fortran_movies_api.data.DirectorsRepository;
-import com.codeup.fortran_movies_api.data.Movie;
-import com.codeup.fortran_movies_api.data.MoviesRepository;
+import com.codeup.fortran_movies_api.data.*;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import org.yaml.snakeyaml.events.Event;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,10 +17,12 @@ public class MoviesController {
 
     private final MoviesRepository moviesRepository;
     private final DirectorsRepository directorsRepository;
+//    private final GenresRepository genresRepository;
 
     public MoviesController(MoviesRepository moviesRepository, DirectorsRepository directorsRepository) {
         this.moviesRepository = moviesRepository;
         this.directorsRepository = directorsRepository;
+//        this.genresRepository = genresRepository;
     }
 
     @GetMapping("{id}")
@@ -87,10 +84,15 @@ public class MoviesController {
     }
 
     @GetMapping("search/director")
-    public List<Director> getByDirector(@RequestParam("name") String directorName) {
+    public List<Director> getByDirector(@RequestParam("name") String directorName){
+        List<Director> directors =  directorsRepository.findByName(directorName);
 
-        List<Director> directors = directorsRepository.findAllByDirectorMovies(directorName);
         return directors;
-
     }
+
+//    @GetMapping("search/genres")
+//    public List<Genre> getByGenre(@RequestParam("genre") String genre) {
+//        List<Genre> genres = genresRepository.findAllBy(genre);
+//        return genres;
+//    }
 }
