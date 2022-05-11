@@ -49,6 +49,11 @@ public class MoviesController {
     }
 
 
+    @GetMapping("search/year")
+    public List<Movie> getByYearRange(@RequestParam("startYear") int startYear, @RequestParam("endYear") int endYear) {
+        return moviesRepository.findByYearRange(startYear, endYear);
+    }
+
     @PostMapping
     public void createOne(@RequestBody Movie newMovie) {
 //        System.out.println(newMovie);
