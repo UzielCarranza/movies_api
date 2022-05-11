@@ -2,8 +2,13 @@ package com.codeup.fortran_movies_api.web;
 
 import com.codeup.fortran_movies_api.data.Movie;
 import com.codeup.fortran_movies_api.data.MoviesRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import org.yaml.snakeyaml.events.Event;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,4 +77,16 @@ public class MoviesController {
 //        List<Movie> movies = new ArrayList<>();
 //        return movies;
 //    }
+
+
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable int id, HttpServletResponse response) throws Exception {
+        try {
+
+            moviesRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No movie with ID: " + id + " exists within the database");
+
+        }
+    }
 }
