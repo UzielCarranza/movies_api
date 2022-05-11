@@ -12,7 +12,7 @@ public interface MoviesRepository extends JpaRepository<Movie, Integer> {
 
 
     @Query(nativeQuery = true,
-            value = "SELECT * FROM movies m WHERE m.year >= :? AND m.year <= :?; ")
+            value = "SELECT * FROM movies m WHERE m.year >= ? AND m.year <= ?; ")
     List<Movie> findByYearRange(Integer startYear, Integer endYear);
 }
 
