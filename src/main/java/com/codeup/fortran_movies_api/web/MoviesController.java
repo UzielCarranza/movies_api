@@ -17,12 +17,12 @@ public class MoviesController {
 
     private final MoviesRepository moviesRepository;
     private final DirectorsRepository directorsRepository;
-//    private final GenresRepository genresRepository;
+    private final GenresRepository genresRepository;
 
-    public MoviesController(MoviesRepository moviesRepository, DirectorsRepository directorsRepository) {
+    public MoviesController(MoviesRepository moviesRepository, DirectorsRepository directorsRepository, GenresRepository genresRepository) {
         this.moviesRepository = moviesRepository;
         this.directorsRepository = directorsRepository;
-//        this.genresRepository = genresRepository;
+        this.genresRepository = genresRepository;
     }
 
     @GetMapping("{id}")
@@ -90,9 +90,9 @@ public class MoviesController {
         return directors;
     }
 
-//    @GetMapping("search/genres")
-//    public List<Genre> getByGenre(@RequestParam("genre") String genre) {
-//        List<Genre> genres = genresRepository.findAllBy(genre);
-//        return genres;
-//    }
+    @GetMapping("search/genres")
+    public List<Genre> getByGenre(@RequestParam("genre") String genre) {
+        List<Genre> genres = genresRepository.findByName(genre);
+        return genres;
+    }
 }

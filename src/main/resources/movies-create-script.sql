@@ -70,13 +70,13 @@ CREATE TABLE IF NOT EXISTS movies
     rating      CHAR(1),
     director_id INT UNSIGNED NOT NULL,
 #     actor_id    INT UNSIGNED NOT NULL,
-#     genre_id    INT UNSIGNED NOT NULL,
+    genre_id    INT UNSIGNED NOT NULL,
 #     directors   VARCHAR(255),
 #     actors      VARCHAR(255),
 #     genre       VARCHAR(255),
-    PRIMARY KEY (id)
-#     FOREIGN KEY (director_id) REFERENCES directors (id),
-#     FOREIGN KEY (genre_id) REFERENCES genre (id),
+    PRIMARY KEY (id),
+    FOREIGN KEY (director_id) REFERENCES directors (id),
+    FOREIGN KEY (genre_id) REFERENCES genre (id)
 #     FOREIGN KEY (actor_id) REFERENCES actors (id)
 );
 
