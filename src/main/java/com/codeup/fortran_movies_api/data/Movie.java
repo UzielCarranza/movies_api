@@ -1,6 +1,8 @@
 package com.codeup.fortran_movies_api.data;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,6 +23,12 @@ public class Movie {
     private String plot;
     private String rating;
     private String poster;
+
+    @ManyToMany(mappedBy = "movies")
+    @JsonIgnoreProperties("movies")
+    private List<Genre> genres;
+
+
 
     public Movie(int id, String title, String year, String plot, String poster, String rating /*String directors,*/ /*String actors, String genre*/) {
         this.id = id;
@@ -107,6 +115,15 @@ public class Movie {
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
     @Override

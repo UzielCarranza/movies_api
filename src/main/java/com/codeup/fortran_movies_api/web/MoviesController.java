@@ -88,7 +88,9 @@ public class MoviesController {
 
     @GetMapping("search/director")
     public List<Director> getByDirector(@RequestParam("name") String directorName) {
-        return directorsRepository.findByName(directorName);
+
+        List<Director> directors = directorsRepository.findAllByDirectorMovies(directorName);
+        return directors;
 
     }
 }

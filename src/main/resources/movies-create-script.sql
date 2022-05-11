@@ -43,7 +43,7 @@ DESCRIBE directors;
 CREATE TABLE IF NOT EXISTS genre
 (
     id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    genre_name VARCHAR(120),
+    name VARCHAR(120),
     PRIMARY KEY (id)
 );
 DESCRIBE genre;
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS movies
     rating      CHAR(1),
     director_id INT UNSIGNED NOT NULL,
 #     actor_id    INT UNSIGNED NOT NULL,
-#     genre_id    INT UNSIGNED NOT NULL,
+    genre_id    INT UNSIGNED NOT NULL,
 #     directors   VARCHAR(255),
 #     actors      VARCHAR(255),
 #     genre       VARCHAR(255),
