@@ -42,7 +42,7 @@ DESCRIBE directors;
 # genre
 CREATE TABLE IF NOT EXISTS genre
 (
-    id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    id   INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(120),
     PRIMARY KEY (id)
 );
@@ -69,15 +69,15 @@ CREATE TABLE IF NOT EXISTS movies
     poster      TEXT,
     rating      CHAR(1),
     director_id INT UNSIGNED NOT NULL,
-#     actor_id    INT UNSIGNED NOT NULL,
+    actor_id    INT UNSIGNED NOT NULL,
     genre_id    INT UNSIGNED NOT NULL,
 #     directors   VARCHAR(255),
 #     actors      VARCHAR(255),
 #     genre       VARCHAR(255),
     PRIMARY KEY (id),
     FOREIGN KEY (director_id) REFERENCES directors (id),
-    FOREIGN KEY (genre_id) REFERENCES genre (id)
-#     FOREIGN KEY (actor_id) REFERENCES actors (id)
+    FOREIGN KEY (genre_id) REFERENCES genre (id),
+    FOREIGN KEY (actor_id) REFERENCES actors (id)
 );
 
 DESCRIBE movies;
