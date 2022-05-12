@@ -28,6 +28,19 @@ public class Movie {
     private List<Genre> genres;
 
 
+
+    @ManyToMany(mappedBy = "movies")
+    @JsonIgnoreProperties("movies")
+    private List<Actors> actors;
+
+    public List<Actors> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<Actors> actors) {
+        this.actors = actors;
+    }
+
     public Movie(int id, String title, String year, String plot, String poster, String rating /*String directors,*/ /*String actors, String genre*/) {
         this.id = id;
         this.title = title;
@@ -106,6 +119,7 @@ public class Movie {
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
+
 
     @Override
     public String toString() {
