@@ -87,20 +87,17 @@ public class MoviesController {
 
     @GetMapping("search/director")
     public List<Director> getByDirector(@RequestParam("name") String directorName) {
-        List<Director> directors = directorsRepository.findByName(directorName);
 
-        return directors;
+        return directorsRepository.findByName(directorName);
     }
 
     @GetMapping("search/genres")
     public List<Genre> getByGenre(@RequestParam("genre") String genre) {
-        List<Genre> genres = genresRepository.findByName(genre);
-        return genres;
+        return genresRepository.findByName(genre);
     }
 
     @GetMapping("search/actors")
     public List<Actors> getByActorName(@RequestParam("name") String name) {
-        List<Actors> actorsList = actorsRepository.findByName(name);
-        return actorsList;
+        return actorsRepository.findByName(name);
     }
 }
