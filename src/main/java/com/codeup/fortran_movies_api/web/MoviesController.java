@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @CrossOrigin
@@ -37,8 +39,21 @@ public class MoviesController {
     }
 
     @GetMapping("all")
-    public List<Movie> getAll() {
-        return moviesRepository.findAll();
+    public List<MovieDto> getAll() {
+        List<Movie> movieList = moviesRepository.findAll();
+        List<MovieDto> movieDtoList = new ArrayList<>();
+
+        for (Movie movie : movieList) {
+            movieDtoList.add(new MovieDto(movie.getId(),
+                    movie.getTitle(),
+                    movie.getYear(),
+                    movie.getPlot(),
+                    movie.getPoster(),
+                    movie.getRating(),
+                    movie.getDirector().getName(),
+                    movie.getGenres().stream().map(Genre::getName).collect(Collectors.joining(", "))));
+        }
+        return movieDtoList;
     }
 
     @GetMapping("search")
@@ -74,15 +89,6 @@ public class MoviesController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No movie with ID: " + id + " exists within the database");
 
         }
-//        try {
-//
-//            moviesRepository.deleteById(id);
-//            } else {
-//                throw new SecondException();
-//            }
-//        } catch (Exception e) {
-//            throw e;
-//        }
     }
 
     @GetMapping("search/director")
