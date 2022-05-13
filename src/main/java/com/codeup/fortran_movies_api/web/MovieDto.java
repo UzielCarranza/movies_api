@@ -17,8 +17,6 @@ public class MovieDto {
         this.id = id;
         this.title = title;
         this.year = year;
-
-
         this.plot = plot;
         this.poster = poster;
         this.rating = rating;

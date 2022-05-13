@@ -42,9 +42,11 @@ public class MoviesController {
     public List<MovieDto> getAll() {
         List<Movie> movieList = moviesRepository.findAll();
         List<MovieDto> movieDtoList = new ArrayList<>();
+//        MovieDto movieDto = new MovieDto();
 
         for (Movie movie : movieList) {
-            movieDtoList.add(new MovieDto(movie.getId(),
+            movieDtoList.add(new MovieDto(
+                    movie.getId(),
                     movie.getTitle(),
                     movie.getYear(),
                     movie.getPlot(),
