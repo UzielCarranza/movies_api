@@ -7,4 +7,5 @@ import java.util.List;
 public interface GenresRepository extends JpaRepository<Genre, Integer> {
 
     List<Genre> findByName(String genre);
+    Genre findAllByName(String genres);
 }

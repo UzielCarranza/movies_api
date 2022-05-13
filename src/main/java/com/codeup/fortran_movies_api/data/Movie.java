@@ -23,15 +23,31 @@ public class Movie {
     private String rating;
     private String poster;
 
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("movies")
+    @JoinTable(name = "movie_genre",
+            joinColumns =
+            @JoinColumn(name = "movie_id"),
+            inverseJoinColumns =
+            @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
-
 
 
     @ManyToMany(mappedBy = "movies")
     @JsonIgnoreProperties("movies")
     private List<Actors> actors;
+
+//    public Movie(String title, String year, String plot, String poster, String rating) {
+//    }
+
+    public Movie(String title, String year, String plot, String poster, String rating) {
+        this.title = title;
+        this.year = year;
+        this.plot = plot;
+        this.poster = poster;
+        this.rating= rating;
+
+    }
 
     public List<Actors> getActors() {
         return actors;

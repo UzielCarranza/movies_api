@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Spliterator;
 import java.util.stream.Collectors;
 
 
@@ -71,14 +72,44 @@ public class MoviesController {
     }
 
     @PostMapping
-    public void createOne(@RequestBody Movie newMovie) {
+    public void createOne(@RequestBody MovieDto newMovie) {
 
-        moviesRepository.save(newMovie);
+        Movie movieToAdd = new Movie(
+                newMovie.getTitle(),
+                newMovie.getYear(),
+                newMovie.getPlot(),
+                newMovie.getPoster(),
+                newMovie.getRating()
+        );
+
+        List<Director> director = directorsRepository.findByName(newMovie.getDirector());
+
+        if (director.isEmpty()){
+            Director director1 = new Director(newMovie.getDirector());
+            movieToAdd.setDirector(directorsRepository.save(director1));
+        }
+        else {
+            movieToAdd.setDirector(director.get(0));
+        }
+        String[] genres = newMovie.getGenre().split(", ");
+        List<Genre> movieGenres = new ArrayList<>();
+        for (String genre : genres){
+            Genre genreInDn = genresRepository.findAllByName(genre);
+            if (genreInDn == null){
+                Genre newGenre = new Genre(genre);
+                genresRepository.save(newGenre);
+            } else {
+                movieGenres.add(genreInDn);
+            }
+        }
+        movieToAdd.setGenres(movieGenres);
+        moviesRepository.save(movieToAdd);
     }
 
 
     @PostMapping("all")
     public void createAll(@RequestBody List<Movie> moviesAll) {
+
         moviesRepository.saveAll(moviesAll);
     }
 
